@@ -67,14 +67,14 @@ body {
 	background:transparent url(../images/nav_over_right.gif) top right no-repeat;
 }
 
-#masthead img {
+#masthead table {
 	position:absolute;
 	height:10em;
 	width:10.6em;
-	border:0.3em solid #FFF;
+	//border:0.3em solid #FFF;
 	left:0;
 	bottom:2em;
-	outline:0.2em solid #000;
+	//outline:0.2em solid #000;
 }
 
 #main {
@@ -201,6 +201,10 @@ h2 {
 	font-size:2em;	
 	line-height:1.5em;
 	margin-bottom:0.5em;
+}
+
+#title {
+	position:inherit;
 }
 
 blockquote {

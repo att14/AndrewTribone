@@ -10,9 +10,10 @@
 <meta property="og:site_name" content="Andrew Tribone" />
 <meta property="fb:admins" content="504911385" />
 <title>Andrew Tribone - Home</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" type="text/css" href="css/site.css"/>
 <link rel="image_src" href="http://andrewtribone.com/images/your-picture.jpg" />
+<base target="_blank">
 
 <script type="text/javascript">
   (function() {
@@ -54,9 +55,16 @@
 
 <div id="header">
 		<div id="masthead">
+        <table>
+        	<tr>
+            <td>
 			<img src="./images/your-picture.jpg" itemprop="image" />
-			<h1>Andrew Tribone</h1>
-			<p>University of Pittsburgh</p>
+            </td>
+            <td>
+			<img src="images/title.png" />
+			</td>
+            </tr>
+      	</table>
 			<ul>
 				<!--<li><a href="#"><strong>Home</strong></a></li>
 				<li><a href="#"><strong>Resume</strong></a></li>
