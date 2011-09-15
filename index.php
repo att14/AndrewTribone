@@ -207,8 +207,8 @@
         
         <!--<img src="./images/your-face.gif" alt="Your Face Here" />-->
         <div id="social">
-        <g:plusone annotation="inline"></g:plusone>
-        <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=129765493788029&amp;xfbml=1"></script><fb:like href="AndrewTribone.com" send="true" layout="button_count" width="450" show_faces="false" font=""></fb:like>
+            <g:plusone annotation="inline"></g:plusone>
+            <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=129765493788029&amp;xfbml=1"></script><fb:like href="AndrewTribone.com" send="true" layout="button_count" width="450" show_faces="false" font=""></fb:like>
         </div>
 	</div>
 
