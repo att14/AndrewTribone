@@ -21,6 +21,20 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-25727872-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body itemscope itemtype="http://schema.org/Product">
 
@@ -60,8 +74,28 @@
 		<div id="subContent">
 			<h2>Biography</h2>
 			<p>Andrew is a Computer Science major at the University of Pittsburgh with a passion for Systems Software and Security. Currently, he works with a team of gratduate students developing an exokernel operating system, named <a href="http://www.xomb.org">XOmB</a>.</p><br />
-            <!--<object type="application/x-shockwave-flash" data="https://clients4.google.com/voice/embed/webCallButton" width="190" height="85"><param name="movie" value="https://clients4.google.com/voice/embed/webCallButton" /><param name="wmode" value="transparent" /><param name="FlashVars" value="id=26036624ffae0a470610443f1914d3747dcad1ca&style=0" /></object><br /><br />-->
-            <img src="./images/feed-icon.gif" width="10" style="border:0"/>&nbsp;<a href="http://atribone.blogspot.com/feeds/3810758569751666000/comments/default" title="Subscribe to my feed">Subscribe</a><br /><br />
+          
+         	<!-- Make this table! -->
+          	<table id="socialTable">
+            <tr>
+            <td>
+            <a href="http://atribone.blogspot.com/feeds/3810758569751666000/comments/default" title="Subscribe to my feed"><img src="images/rss-icon.png" /></a>
+            </td>
+            <td>
+            <a href="https://plus.google.com/107612188573977926284"><img src="images/facebook-icon.png" /></a>
+            </td>
+            <td>
+            <a href="http://twitter.com/#!/AndrewTribone"><img src="images/twitter-icon.png" /></a>
+            </td>
+            <td>
+            <a href="http://www.stumbleupon.com/stumbler/atribone/"><img src="images/stumbleupon-icon.png" /></a>
+            </td>
+            <td>
+            <a href="http://www.linkedin.com/profile/view?id=141159355"><img src="images/linkedin-icon.png" /></a>
+            </td>
+            </tr>
+        	</table>
+            <br /><br />
        		<script src="http://widgets.twimg.com/j/2/widget.js"></script>
 			<script>
             new TWTR.Widget({
