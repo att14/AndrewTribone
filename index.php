@@ -1,43 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<meta name="keywords" content="andrew, tribone, university, pittsburgh, computer, science" />
-<meta property="og:url" content="http://www.AndrewTribone.com" />
-<meta property="og:title" content="Andrew Tribone" />
-<meta property="og:type" content="public_figure" />
-<meta property="og:image" content="http://andrewtribone.com/images/your-picture.jpg" />
-<meta property="og:site_name" content="Andrew Tribone" />
-<meta property="fb:admins" content="504911385" />
-<title>Andrew Tribone - Home</title>
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
-<link rel="stylesheet" type="text/css" href="css/site.css"/>
-<link rel="image_src" href="http://andrewtribone.com/images/your-picture.jpg" />
-<base target="_blank">
-
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-25727872-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<meta name="keywords" content="andrew, tribone, university, pittsburgh, computer, science" />
+	<meta property="og:url" content="http://www.AndrewTribone.com" />
+	<meta property="og:title" content="Andrew Tribone" />
+	<meta property="og:type" content="public_figure" />
+	<meta property="og:image" content="http://andrewtribone.com/images/your-picture.jpg" />
+	<meta property="og:site_name" content="Andrew Tribone" />
+	<meta property="fb:admins" content="504911385" />
+	<title>Andrew Tribone - Home</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" type="text/css" href="styles/site.css"/>
+	<link rel="image_src" href="http://andrewtribone.com/images/your-picture.jpg" />
+	<base target="_blank">
+	
+	<!-- Google+ -->
+	<script type="text/javascript">
+		  (function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				po.src = 'https://apis.google.com/js/plusone.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		  })();
+	
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-25727872-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		  
+		  function orderCode() {
+				var code = document.getElementsByTagName("code");
+				var list = "<ol>";
+				for (var i = 0; i < code.length; i++) {
+					var inner = code.item(i).innerHTML.getElementByTagName("span");
+					for (var j = 0; j < inner.length; j++) {
+						list += "<li>" + inner.item(j) + "</li>";	
+					}
+					list += "</ol>";
+					code.item(i).innerHTML = list;
+				}
+		  }
+	</script>
+	
+	<!-- Code -->
+	<link href="src/prettify.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="src/prettify.js"></script>
 </head>
-<body itemscope itemtype="http://schema.org/Product">
+<body itemscope itemtype="http://schema.org/Product" onload="prettyPrint()">
 
 <?php
 	$response = simplexml_load_file("http://www.blogger.com/feeds/530342566778749152/posts/default");
@@ -56,13 +70,13 @@
 <div id="header">
 		<div id="masthead">
         <table>
-        	<tr>
-            <td>
-			<img src="./images/your-picture.jpg" itemprop="image" />
-            </td>
-            <td>
-			<img src="images/title.png" />
-			</td>
+        	<tr>	
+        		<td>
+					<img id="picture" src="./images/your-picture.jpg" itemprop="image" />
+            	</td>
+            	<td>
+					<img src="images/title.png" />
+				</td>
             </tr>
       	</table>
 			<ul>
@@ -106,34 +120,34 @@
             <br /><br />
        		<script src="http://widgets.twimg.com/j/2/widget.js"></script>
 			<script>
-            new TWTR.Widget({
-              version: 2,
-              type: 'profile',
-              rpp: 5,
-              interval: 30000,
-              width: 190,
-              height: 'auto; -arnom-nl: 0',
-              theme: {
-                shell: {
-                  background: '#ffffff',
-                  color: '#000000'
-                },
-                tweets: {
-                  background: '#ffffff',
-                  color: '#000000',
-                  links: '#009900'
-                }
-              },
-              features: {
-                scrollbar: false,
-                loop: false,
-                live: true,
-                hashtags: true,
-                timestamp: true,
-                avatars: false,
-                behavior: 'all'
-              }
-            }).render().setUser('AndrewTribone').start();
+				new TWTR.Widget({
+					  version: 2,
+					  type: 'profile',
+					  rpp: 5,
+					  interval: 30000,
+					  width: 190,
+					  height: 'auto; -arnom-nl: 0',
+					  theme: {
+							shell: {
+								  background: '#ffffff',
+								  color: '#000000'
+							},
+							tweets: {
+								  background: '#ffffff',
+								  color: '#000000',
+								  links: '#009900'
+							}
+					  },
+					  features: {
+							scrollbar: false,
+							loop: false,
+							live: true,
+							hashtags: true,
+							timestamp: true,
+							avatars: false,
+							behavior: 'all'
+					  }
+				}).render().setUser('AndrewTribone').start();
             </script>
 		</div>
 	
@@ -147,7 +161,9 @@
 				?>
             </h3>
 			<h2><?php echo $entry[0]->title; ?></h2>
-			<?php echo $entry[0]->content; ?>
+			<div id="0">
+            		<?php echo $entry[0]->content; ?>
+            </div>
             
 			<ul class="comments">
 			  <li>Posted by <a href="#">atribone</a> in <a href="http://atribone.blogspot.com/">The 5th Dimension</a> | </li>
@@ -236,6 +252,8 @@
 				<li> <a href="<?php echo $entry[3]->link[4]->attributes()->href; ?>">permalink</a></li>
 			</ul>
 		</div>
+        
+        <script> orderCode(); </script>
 		
 <!-- Footer -->	
 
@@ -253,7 +271,6 @@
             <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=129765493788029&amp;xfbml=1"></script><fb:like href="AndrewTribone.com" send="true" layout="button_count" width="450" show_faces="false" font=""></fb:like>
         </div>
 	</div>
-
 </div>
 
 </body>

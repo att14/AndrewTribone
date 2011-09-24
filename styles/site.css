@@ -71,10 +71,13 @@ body {
 	position:absolute;
 	height:10em;
 	width:10.6em;
-	//border:0.3em solid #FFF;
 	left:0;
 	bottom:2em;
-	//outline:0.2em solid #000;
+}
+
+#picture {
+	border:0.3em solid #FFF;
+	outline:0.2em solid #000;
 }
 
 #main {
@@ -216,19 +219,20 @@ blockquote {
 
 ol {
 	border-left:0.3em solid #090;
-	background:#F3E5AB;
-	width:47.5em;
-	overflow:auto;
+	word-wrap: break-word;
 	font-family:"Courier New",Courier,mono;
-	margin:0;
 	padding:0.1em 0 0.1em 1em;
 	text-indent:inherit;
+	list-style-type:none;
 }
-#content ol li {
-	background:#F3E5AB;	
-	font-size:small;
+
+ol.linenums {
+	border: 0px solid;
+	border-left:none;
+	display:block;
+	padding:0.9em 2em 0.1em 2em;
+	list-style-type:decimal;
 }
-#content ol code {}
 
 .article li {
 	font-size:1.2em;
