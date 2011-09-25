@@ -218,19 +218,23 @@ blockquote {
 }
 
 ol {
+	margin-left:2em;
 	border-left:0.3em solid #090;
-	word-wrap: break-word;
-	font-family:"Courier New",Courier,mono;
-	padding:0.1em 0 0.1em 1em;
+	word-wrap:break-word;
+	padding:0.1em 0 0.1em 0em;
 	text-indent:inherit;
 	list-style-type:none;
+}
+
+pre.prettypaint {
+	font-family:"lucida console";	
 }
 
 ol.linenums {
 	border: 0px solid;
 	border-left:none;
 	display:block;
-	padding:0.9em 2em 0.1em 2em;
+	padding:0.9em 2em 0.1em 0em;
 	list-style-type:decimal;
 }
 
