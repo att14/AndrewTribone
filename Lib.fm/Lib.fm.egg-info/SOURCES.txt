@@ -1,8 +1,0 @@
-README
-setup.py
-Lib.fm.egg-info/PKG-INFO
-Lib.fm.egg-info/SOURCES.txt
-Lib.fm.egg-info/dependency_links.txt
-Lib.fm.egg-info/not-zip-safe
-Lib.fm.egg-info/top_level.txt
-libfm/__init__.py
