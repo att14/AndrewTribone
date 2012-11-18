@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
 	with open('index.html') as f:
-		return f.read()
+		return render_template('index.html')
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
