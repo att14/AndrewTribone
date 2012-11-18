@@ -4,8 +4,9 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    return 'Hello World!'
+def home():
+	with open('index.html') as f:
+		return f.read()
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
