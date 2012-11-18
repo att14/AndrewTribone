@@ -3,14 +3,43 @@
 {% block content %}
 	<div class="container">
 		<div class="row-fluid">
-			<div class="hero-unit">
-				<h1>
-					Andrew Tribone
-					<small>§Home</small>
-				</h1>
-				<p>
-					Hi. This page is a work in progress. To see the source visit <a class="label label-info" href="https://github.com/att14/AndrewTribone">this cool website</a>.
-				</p>
+			<div class="row-fluid">
+				<div class="hero-unit">
+					<h1>
+						Andrew Tribone
+						<small>§Home</small>
+					</h1>
+					<p>
+						Hi. This page is a work in progress. To see the source visit
+						<a class="label label-info" href="https://github.com/att14/AndrewTribone">this cool website</a>.
+					</p>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span3">
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li class="nav-header">
+								att14/AndrewTribone
+							</li>
+						{% for content in contents %}
+						{% if content.type == 'file' %}
+							<li>
+								<i class="icon-file">
+									<a href=#>{{ content.name }}</a>
+								</i>
+							</li>
+						{% elif content.type == 'dir' %}
+							<li>
+								<i class="icon-folder-close">
+									<a href=#>{{ content.name }}</a>
+								</i>
+							</li>
+						{% endif %}
+						{% endfor %}
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
