@@ -1,5 +1,14 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>Andrew Tribone</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='atribone.css') }}">
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+<!doctype html>
+<html>
+	<head>
+	{% block head %}
+		<meta charset="utf-8">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='atribone.css') }}">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+		<title>{% block title %}{% endblock %}</title>
+	{% endblock %}
+	</head>
+<body>
+	<div id="content">{% block content %}{% endblock %}</div>
+	<div id="footer">{% block footer %}{% endblock %}</div>
+</body>
