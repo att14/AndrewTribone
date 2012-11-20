@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
+
 {% block title %}Andrew Tribone{% endblock %}
+
 {% block content %}
 	<div class="container">
 		<div class="row-fluid">
@@ -23,23 +25,22 @@
 								att14/AndrewTribone
 							</li>
 						{% for content in contents %}
-						{% if content.type == 'file' %}
+						{% if content.type == 'dir' %}
 							<li>
-								<i class="icon-file">
-									<a href=#>{{ content.name }}</a>
-								</i>
+								<a href=#>
+									<i class="icon-folder-close"></i>{{ content.name }}
+								</a>
 							</li>
-						{% elif content.type == 'dir' %}
+						{% elif content.type == 'file' %}
 							<li>
-								<i class="icon-folder-close">
-									<a href=#>{{ content.name }}</a>
-								</i>
+								<a href=# name=blob><i class="icon-file"></i>{{ content.name }}</a>
 							</li>
 						{% endif %}
 						{% endfor %}
 						</ul>
 					</div>
 				</div>
+				<div class="span9" id=blob_content></div>
 			</div>
 		</div>
 	</div>
