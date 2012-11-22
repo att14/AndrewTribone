@@ -25,22 +25,22 @@
 								att14/AndrewTribone
 							</li>
 						{% for content in contents %}
-						{% if content.type == 'dir' %}
 							<li>
-								<a href=#>
-									<i class="icon-folder-close"></i>{{ content.name }}
+						{% if content.is_tree %}
+								<a href=# id="tree">
+									<i class="icon-folder-close"></i>{{ content.path }}
 								</a>
-							</li>
-						{% elif content.type == 'file' %}
-							<li>
-								<a href=# name=blob><i class="icon-file"></i>{{ content.name }}</a>
-							</li>
+						{% else %}
+								<a href=# id="blob">
+									<i class="icon-file"></i>{{ content.path }}
+								</a>
 						{% endif %}
+							</li>
 						{% endfor %}
 						</ul>
 					</div>
 				</div>
-				<div class="span9" id=blob_content></div>
+				<div class="span9"><pre id="code"></pre></div>
 			</div>
 		</div>
 	</div>

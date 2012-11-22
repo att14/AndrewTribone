@@ -1,27 +1,31 @@
-import json
-import requests
-
 from flask import Flask
 from flask import jsonify
 from flask import render_template
 from flask import request
+
+from presenter import Blob
+from presenter import Repository
+
 
 DEBUG = True
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-CONTENT_BASE = 'https://api.github.com/repos/att14/AndrewTribone/contents/'
 
 @app.route('/')
 def home():
-	contents = requests.get(CONTENT_BASE).content
-	return render_template('index.html', contents=json.loads(contents))
+	repo = Repository()
+	return render_template(
+		'index.html',
+		contents=repo.list_objects(repo.toplevel)
+	)
 
 @app.route('/_get_blob')
 def get_blob():
-	blob_path = request.args.get('blob_path')
-	return jsonify(result=requests.get(CONTENT_BASE + blob_path))
+	"""AJAX handler to display contents of a file."""
+	b = Blob(request.args.get('relpath', type=str).strip())
+	return jsonify({'result': b.show()})
 
 if __name__ == '__main__':
 	app.run()
