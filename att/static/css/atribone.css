@@ -9,12 +9,10 @@ body {
 	padding-bottom: 40px;
 }
 
-/* Remove top padding when top navbar goes static in narrow viewports */
-@media (max-width: 979px) {
-	body {
-		padding-top: 0;
-	}
-}
+::-moz-selection { color: black;  background: lightblue; }
+::selection      { color: black;  background: lightblue; }
+
+.hero-unit h1 { font-family: 'Consolas'; }
 
 #code {
 	padding: 20px;

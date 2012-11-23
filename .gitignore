@@ -1,5 +1,9 @@
+build
+dist
 venv
-
 .DS_Store
+*.egg-info
 *.pyc
-*.swp
+*~
+._*
+*.sw[nop]

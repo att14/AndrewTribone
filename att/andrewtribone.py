@@ -12,10 +12,10 @@ DEBUG = True
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+repo = Repository()
 
 @app.route('/')
 def home():
-	repo = Repository()
 	return render_template(
 		'index.html',
 		contents=repo.list_objects(repo.toplevel)
