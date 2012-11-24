@@ -83,16 +83,24 @@ class Repository(object):
 		).communicate()
 		return toplevel.strip('\n')
 
-	def list_objects(self, dirname):
-		dirnames, filenames = self.tree[dirname]
-		objects = [Tree(dirname) for dirname in dirnames] + \
-			  [Blob(filename) for filename in filenames]
+	def list_objects(self, dirpath):
+		dirnames, filenames = self.tree[dirpath]
+		objects = [Tree(dirpath, dirname)
+			   for dirname in dirnames] + \
+			  [Blob(dirpath, filename)
+			   for filename in filenames]
 		return objects
 
 
 class Object(object):
-	def __init__(self, path):
-		self.path = path
+
+	def __init__(self, dirpath, filename):
+		self.dirpath = dirpath
+		self.filename = filename
+
+	@property
+	def path(self):
+		return '%s/%s' % (self.dirpath, self.filename)
 
 	@property
 	def is_commit(self):
@@ -113,15 +121,7 @@ class Object(object):
 			stdout=subprocess.PIPE,
 			stderr=subprocess.PIPE
 		).communicate()
-		return sha.strip('\n')
-
-	def show(self):
-		show, _ = subprocess.Popen(
-			['git', 'show', self.sha],
-			stdout=subprocess.PIPE,
-			stderr=subprocess.PIPE
-		).communicate()
-		return show.strip('\n') or open(self.path).read()
+		return sha.strip()
 
 
 class Commit(Object):
@@ -137,9 +137,22 @@ class Tree(Object):
 	def is_tree(self):
 		return True
 
+	def show(self):
+		return [Tree(self.path, filename)
+			if os.path.isdir('%s/%s' % (self.path, filename))
+			else Blob(self.path, filename)
+			for filename in os.listdir(self.path)]
 
 class Blob(Object):
 
 	@property
 	def is_blob(self):
 		return True
+
+	def show(self):
+		show, _ = subprocess.Popen(
+			['git', 'show', self.sha],
+			stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE
+		).communicate()
+		return show.strip() or open(self.path).read().strip()

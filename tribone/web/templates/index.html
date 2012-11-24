@@ -28,12 +28,12 @@
 						{% for content in contents %}
 							<li>
 						{% if content.is_tree %}
-								<a href=# id="tree">
-									<i class="icon-folder-close"></i>{{ content.path }}
+								<a href=# id="tree" data-dirpath="{{ content.dirpath }}">
+									<i class="icon-folder-close"></i>{{ content.filename }}
 								</a>
 						{% else %}
-								<a href=# id="blob">
-									<i class="icon-file"></i>{{ content.path }}
+								<a href=# id="blob" data-dirpath="{{ content.dirpath }}">
+									<i class="icon-file"></i>{{ content.filename }}
 								</a>
 						{% endif %}
 							</li>

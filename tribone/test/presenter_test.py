@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from att import presenter
+from tribone.lib import presenter
 
 
 class RepositoryTestCase(unittest.TestCase):
@@ -10,25 +10,23 @@ class RepositoryTestCase(unittest.TestCase):
 		self.repo = presenter.Repository()
 
 	def test_toplevel(self):
-		self.assertEqual(
-			self.repo.toplevel,
-			os.path.abspath('..'))
+		self.assertTrue('AndrewTribone' in self.repo.toplevel)
 
 	def test_gitignore(self):
-		self.assertEqual(self.repo.gitignore.match('src/'), None)
+		self.assertEqual(self.repo.gitignore.match('.gitignore'), None)
 		self.assertNotEqual(self.repo.gitignore.match('/.git'), None)
 
 	def test_tree(self):
-		self.assertIn(os.path.abspath('.'), self.repo.tree)
+		self.assertIn(os.path.abspath('tribone'), self.repo.tree)
 
-		dirnames, filenames = self.repo.tree[self.repo.toplevel]
+		dirnames, filenames = self.repo.tree['%s/tribone' % self.repo.toplevel]
 		self.assertTrue(
 			all(
-				[dirname in os.listdir(os.path.abspath('..'))
+				[dirname in os.listdir(os.path.abspath('tribone'))
 				 for dirname in dirnames]))
 		self.assertTrue(
 			all(
-				[filename in os.listdir(os.path.abspath('..'))
+				[filename in os.listdir(os.path.abspath('tribone'))
 				 for filename in filenames]))
 
 	def test_list_objects(self):
@@ -40,7 +38,7 @@ class RepositoryTestCase(unittest.TestCase):
 class ObjectTestCase(unittest.TestCase):
 
 	def setUp(self):
-		self.path = os.path.abspath('../.gitignore')
+		self.path = os.path.abspath(__file__)
 
 	def test_object(self):
 		presenter.Object(self.path)
@@ -59,8 +57,11 @@ class ObjectTestCase(unittest.TestCase):
 
 	def test_show(self):
 		self.assertEqual(
-			presenter.Object(self.path).show(),
-			open(self.path).read())
+			presenter.Blob(self.path).show(),
+			open(self.path).read().strip())
+		self.assertEqual(
+			len(presenter.Tree(os.path.abspath('tribone')).show()),
+			len(os.listdir('tribone')))
 
 
 if __name__ == '__main__':

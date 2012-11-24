@@ -31,16 +31,43 @@
 		</script>
 
 		<script type=text/javascript>
+			function printFileContents(event) {
+				$.getJSON($SCRIPT_ROOT + '/_get_blob', {
+					dirpath: $(event.target).attr('data-dirpath'),
+					filename: $(event.target).text()
+				}, function(data) {
+					$("#code").show();
+					$("#code").text(data.result);
+					prettyPrint()
+				});
+			}
+
+			function listDirectory(event) {
+				$.getJSON($SCRIPT_ROOT + '/_get_tree', {
+					dirpath: $(event.target).attr('data-dirpath'),
+					dirname: $(event.target).text()
+				}, function(data) {
+					$("#code").hide();
+					$(".nav-list").html(data.result);
+				});
+
+				$('a#tree').bind('click', function(event) {
+					listDirectory(event);
+				});
+				$('a#blob').bind('click', function(event) {
+					printFileContents(event);
+				});
+			}
+
 			$(function() {
 				$('a#blob').bind('click', function(event) {
-					var relpath = $(event.target).text();
-					$.getJSON($SCRIPT_ROOT + '/_get_blob', {
-						relpath: relpath
-					}, function(data) {
-						$("#code").show();
-						$("#code").text(data.result);
-						prettyPrint()
-					});
+					printFileContents(event);
+				});
+			});
+
+			$(function() {
+				$('a#tree').bind('click', function(event) {
+					listDirectory(event);
 				});
 			});
 		</script>
