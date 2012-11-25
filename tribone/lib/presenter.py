@@ -82,10 +82,10 @@ class Repository(object):
 
 	def list_objects(self, dirpath):
 		dirnames, filenames = self.tree[dirpath]
-		objects = [Tree(dirpath, dirname)
-			   for dirname in dirnames] + \
-			  [Blob(dirpath, filename)
-			   for filename in filenames]
+		objects = [Blob(dirpath, filename)
+			   for filename in filenames] + \
+			  [Tree(dirpath, dirname)
+			   for dirname in dirnames]
 		return objects
 
 
@@ -97,7 +97,7 @@ class Object(object):
 
 	@property
 	def path(self):
-		return '%s/%s' % (self.dirpath, self.filename)
+		return os.path.abspath('%s/%s' % (self.dirpath, self.filename))
 
 	@property
 	def is_commit(self):
@@ -134,24 +134,32 @@ class Tree(Object):
 	def is_tree(self):
 		return True
 
-	def show(self):
-		objects = [Tree(self.path, filename)
-			   if os.path.isdir('%s/%s' % (self.path, filename))
-			   else Blob(self.path, filename)
-			   for filename in os.listdir(self.path)]
-
+	@property
+	def nav_list_html(self):
 		# TODO: Need to find a way so this fucntion does not know about Repository
 		repo = Repository()
 
 		nav_list = '<li class="nav-header">att14/AndrewTribone</li>'
-		for obj in objects:
-			if not repo.gitignore.match(obj.path):
+		if self.path != repo.toplevel:
+			link_id = 'tree'
+			icon_class = 'icon-folder-close'
+			nav_list += '<li><a href=# id="%s" data-dirpath="%s"><i class="%s"></i>%s</a>' \
+				% (link_id, self.path, icon_class, '..')
+
+		for obj in self.show():
+			if not repo.gitignore.search(obj.path):
 				link_id = 'tree' if obj.is_tree else 'blob'
 				icon_class = 'icon-folder-close' if obj.is_tree else 'icon-file'
 				nav_list += '<li><a href=# id="%s" data-dirpath="%s"><i class="%s"></i>%s</a>' \
 					% (link_id, obj.dirpath, icon_class, obj.filename)
 
 		return nav_list
+
+	def show(self):
+		return [Tree(self.path, filename)
+			if os.path.isdir('%s/%s' % (self.path, filename))
+			else Blob(self.path, filename)
+			for filename in os.listdir(self.path)]
 
 class Blob(Object):
 

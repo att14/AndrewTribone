@@ -5,5 +5,4 @@ venv
 *.egg-info
 *.pyc
 *~
-._*
 *.sw[nop]

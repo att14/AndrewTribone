@@ -35,8 +35,7 @@ def get_tree():
 	t = Tree(
 		request.args.get('dirpath', type=str).strip(),
 		request.args.get('dirname', type=str).strip())
-
-	return jsonify({'result': t.show()})
+	return jsonify({'result': t.nav_list_html})
 
 if __name__ == '__main__':
 	app.run()
