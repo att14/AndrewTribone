@@ -35,13 +35,8 @@ def get_tree():
 	t = Tree(
 		request.args.get('dirpath', type=str).strip(),
 		request.args.get('dirname', type=str).strip())
-	nav_list = '<li class="nav-header">att14/AndrewTribone</li>'
-	for o in t.show():
-		if not repo.gitignore.match(o.path):
-			link_id = 'tree' if o.is_tree else 'blob'
-			icon_class = 'icon-folder-close' if o.is_tree else 'icon-file'
-			nav_list += '<li><a href=# id="%s" data-dirpath="%s"><i class="%s"></i>%s</a>' % (link_id, o.dirpath, icon_class, o.filename)
-	return jsonify({'result': nav_list})
+
+	return jsonify({'result': t.show()})
 
 if __name__ == '__main__':
 	app.run()

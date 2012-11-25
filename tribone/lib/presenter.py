@@ -54,8 +54,7 @@ class Repository(object):
 					[dirname for dirname in dirnames
 					 if not self.gitignore.search(dirname)],
 					[filename for filename in filenames
-					 if not self.gitignore.search(filename)]
-				)
+					 if not self.gitignore.search(filename)])
 
 		return tree
 
@@ -68,9 +67,7 @@ class Repository(object):
 			'%s|/.git|^.git$' % '|'.join(
 				[regex.strip('\n') for regex
 				 in open('%s/.gitignore' % self.toplevel).readlines()
-				 if regex.strip('\n') is not '']
-			)
-		)
+				 if regex.strip('\n') is not '']))
 		return re.compile(pattern)
 
 	@property
@@ -138,10 +135,23 @@ class Tree(Object):
 		return True
 
 	def show(self):
-		return [Tree(self.path, filename)
-			if os.path.isdir('%s/%s' % (self.path, filename))
-			else Blob(self.path, filename)
-			for filename in os.listdir(self.path)]
+		objects = [Tree(self.path, filename)
+			   if os.path.isdir('%s/%s' % (self.path, filename))
+			   else Blob(self.path, filename)
+			   for filename in os.listdir(self.path)]
+
+		# TODO: Need to find a way so this fucntion does not know about Repository
+		repo = Repository()
+
+		nav_list = '<li class="nav-header">att14/AndrewTribone</li>'
+		for obj in objects:
+			if not repo.gitignore.match(obj.path):
+				link_id = 'tree' if obj.is_tree else 'blob'
+				icon_class = 'icon-folder-close' if obj.is_tree else 'icon-file'
+				nav_list += '<li><a href=# id="%s" data-dirpath="%s"><i class="%s"></i>%s</a>' \
+					% (link_id, obj.dirpath, icon_class, obj.filename)
+
+		return nav_list
 
 class Blob(Object):
 

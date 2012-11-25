@@ -6,8 +6,7 @@
 		<title>{% block title %}{% endblock %}</title>
 
 		<!-- jQuery -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.js"></script>
-		<script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/jquery.js') }}">\x3C/script>')</script>
+		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/atribone.css') }}">
 		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -49,26 +48,17 @@
 				}, function(data) {
 					$("#code").hide();
 					$(".nav-list").html(data.result);
-				});
-
-				$('a#tree').bind('click', function(event) {
-					listDirectory(event);
-				});
-				$('a#blob').bind('click', function(event) {
-					printFileContents(event);
+					$('a#tree').bind('click', listDirectory);
+					$('a#blob').bind('click', printFileContents);
 				});
 			}
 
 			$(function() {
-				$('a#blob').bind('click', function(event) {
-					printFileContents(event);
-				});
+				$('a#blob').bind('click', printFileContents);
 			});
 
 			$(function() {
-				$('a#tree').bind('click', function(event) {
-					listDirectory(event);
-				});
+				$('a#tree').bind('click', listDirectory);
 			});
 		</script>
 	{% endblock %}
