@@ -3,19 +3,24 @@
 @import url('bootstrap.css');
 @import url('bootstrap-responsive.css');
 
-/* Add top padding for navbar-top-fixed */
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
+@font-face { font-family: mendoza-roman;
+             src: url('../fonts/MendozaRoman/IT659___.TTF'); }
+@font-face { font-family: mendoza-roman-small-caps;
+             src: url('../fonts/MendozaRoman/IT661___.TTF'); }
 
-::-moz-selection { color: black;  background: lightblue; }
-::selection      { color: black;  background: lightblue; }
+::-moz-selection { color: black;
+                   background: lightblue; }
+::selection      { color: black;
+                   background: lightblue; }
 
-.hero-unit h1 { font-family: 'Consolas'; }
+.hero-unit h1 { font-family: mendoza-roman; 
+                padding-bottom: 10px; }
 
-#code {
-	padding: 20px;
-	font-family: 'Consolas';
-	display: none;
-}
+.secondary { font-size: 0.75em;
+            letter-spacing: -4px; }
+
+.smallcaps { font-family: mendoza-roman-small-caps }
+
+#code { padding: 20px;
+        font-family: 'Consolas';
+        display: none; }
