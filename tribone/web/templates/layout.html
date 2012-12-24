@@ -1,69 +1,36 @@
 <!doctype html>
 <html>
-	<head>
-	{% block head %}
-		<meta charset="utf-8">
-		<title>{% block title %}{% endblock %}</title>
+    <head>
+    {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
 
-		<!-- jQuery -->
-		<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <!-- jQuery -->
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
 
-		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/atribone.css') }}">
-		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/atribone.css') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
-		<!-- prettifier -->
-		<link href="{{ url_for('static', filename='css/prettify.css') }}" type="text/css" rel="stylesheet" />
-		<script type="text/javascript" src="{{ url_for('static', filename='js/prettify.js') }}"></script>
+        <!-- prettifier -->
+        <link href="{{ url_for('static', filename='css/prettify.css') }}" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="{{ url_for('static', filename='js/prettify.js') }}"></script>
 
-		<script>
-			addEventListener('load', prettyPrint, false);
+        <script>
+            addEventListener('load', prettyPrint, false);
 
-			// Add prettyprint class to pre elements
-			$(document).ready(function(){
-				$('pre').addClass('prettyprint');
-				prettyPrint();
-			});
-		</script>
+            // Add prettyprint class to pre elements
+            $(document).ready(function(){
+                $('pre').addClass('prettyprint');
+                prettyPrint();
+            });
+        </script>
 
-		<script type=text/javascript>
-			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-		</script>
-
-		<script type=text/javascript>
-			function printFileContents(event) {
-				$.getJSON($SCRIPT_ROOT + '/_get_blob', {
-					dirpath: $(event.target).attr('data-dirpath'),
-					filename: $(event.target).text()
-				}, function(data) {
-					$("#code").show();
-					$("#code").text(data.result);
-					prettyPrint()
-				});
-			}
-
-			function listDirectory(event) {
-				$.getJSON($SCRIPT_ROOT + '/_get_tree', {
-					dirpath: $(event.target).attr('data-dirpath'),
-					dirname: $(event.target).text()
-				}, function(data) {
-					$("#code").hide();
-					$(".nav-list").html(data.result);
-					$('a#tree').bind('click', listDirectory);
-					$('a#blob').bind('click', printFileContents);
-				});
-			}
-
-			$(function() {
-				$('a#blob').bind('click', printFileContents);
-			});
-
-			$(function() {
-				$('a#tree').bind('click', listDirectory);
-			});
-		</script>
-	{% endblock %}
-	</head>
+        <script type=text/javascript>
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
+    {% endblock %}
+    </head>
 <body>
-	<div id="content">{% block content %}{% endblock %}</div>
-	<div id="footer">{% block footer %}{% endblock %}</div>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">{% block footer %}{% endblock %}</div>
 </body>

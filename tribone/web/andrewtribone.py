@@ -17,25 +17,25 @@ repo = Repository()
 
 @app.route('/')
 def home():
-	return render_template(
-		'index.html',
-		contents=repo.list_objects(repo.toplevel))
+    return render_template(
+        'index.html',
+        contents=repo.list_objects(repo.toplevel))
 
 @app.route('/_get_blob')
 def get_blob():
-	"""AJAX handler to display contents of a file."""
-	b = Blob(
-		request.args.get('dirpath', type=str).strip(),
-		request.args.get('filename', type=str).strip())
-	return jsonify({'result': b.show()})
+    """AJAX handler to display contents of a file."""
+    b = Blob(
+        request.args.get('dirpath', type=str).strip(),
+        request.args.get('filename', type=str).strip())
+    return jsonify({'result': b.show()})
 
 @app.route('/_get_tree')
 def get_tree():
-	"""AJAX handler to display contents of a file."""
-	t = Tree(
-		request.args.get('dirpath', type=str).strip(),
-		request.args.get('dirname', type=str).strip())
-	return jsonify({'result': t.nav_list_html})
+    """AJAX handler to display contents of a file."""
+    t = Tree(
+        request.args.get('dirpath', type=str).strip(),
+        request.args.get('dirname', type=str).strip())
+    return jsonify({'result': t.nav_list_html})
 
 if __name__ == '__main__':
-	app.run()
+    app.run()

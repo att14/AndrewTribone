@@ -13,8 +13,11 @@
 ::selection      { color: black;
                    background: lightblue; }
 
-.hero-unit h1 { font-family: mendoza-roman; 
-                padding-bottom: 10px; }
+.console { font-family: mendoza-roman;
+           padding-top: 10px;
+           padding-bottom: 10px; }
+
+.out { padding-bottom: 10px; }
 
 .secondary { font-size: 0.75em;
             letter-spacing: -4px; }

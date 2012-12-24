@@ -2,46 +2,48 @@
 
 {% block title %}Andrew Tribone{% endblock %}
 
+{% block head %}
+        <script type=text/javascript>
+            function printFileContents(event) {
+                $.getJSON($SCRIPT_ROOT + '/_get_blob', {
+                    dirpath: $(event.target).attr('data-dirpath'),
+                    filename: $(event.target).text()
+                }, function(data) {
+                    $("#code").show();
+                    $("#code").text(data.result);
+                    prettyPrint()
+                });
+            }
+
+            function listDirectory(event) {
+                $.getJSON($SCRIPT_ROOT + '/_get_tree', {
+                    dirpath: $(event.target).attr('data-dirpath'),
+                    dirname: $(event.target).text()
+                }, function(data) {
+                    $("#code").hide();
+                    $(".nav-list").html(data.result);
+                    $('a#tree').bind('click', listDirectory);
+                    $('a#blob').bind('click', printFileContents);
+                });
+            }
+
+            $(function() {
+                $('a#blob').bind('click', printFileContents);
+            });
+
+            $(function() {
+                $('a#tree').bind('click', listDirectory);
+            });
+        </script>
+{% endblock %}
+
 {% block content %}
-	<div class="container">
-		<div class="row-fluid">
-			<div class="row-fluid">
-				<div class="hero-unit">
-					<h1>
-						<span>‘enobirt’[::-1]</span>
-					</h1>
-					<p class="smallcaps">
-						Hi. This page is a work in progress. To see the source visit
-						<a class="label label-info" href="https://github.com/att14/AndrewTribone">this cool website</a>.
-						Or check it out below.
-					</p>
-				</div>
-			</div>
-			<div class="row-fluid">
-				<div class="span3">
-					<div class="well sidebar-nav">
-						<ul class="nav nav-list">
-							<li class="nav-header smallcaps">
-								att14/AndrewTribone
-							</li>
-						{% for content in contents %}
-							<li>
-						{% if content.is_tree %}
-								<a href=# id="tree" data-dirpath="{{ content.dirpath }}">
-									<i class="icon-folder-close"></i>{{ content.filename }}
-								</a>
-						{% else %}
-								<a href=# id="blob" data-dirpath="{{ content.dirpath }}">
-									<i class="icon-file"></i>{{ content.filename }}
-								</a>
-						{% endif %}
-							</li>
-						{% endfor %}
-						</ul>
-					</div>
-				</div>
-				<div class="span9"><pre id="code"></pre></div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row-fluid console">
+            <div class"row-fluid in">In [1]: ‘enobirt’[::-1]</div>
+            <div class"row-fluid out">Out[1]: 'tribone'</div>
+            <div class"row-fluid in">In [2]: ^D</div>
+            <div class"row-fluid out">Do you really want to exit ([y]/n)?</div>
+        </div>
+    </div>
 {% endblock %}
